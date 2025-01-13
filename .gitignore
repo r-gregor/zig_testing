@@ -2,10 +2,11 @@
 **/*.exe
 **/*.pdb
 **/*.obj
-target
-target/*
-**/target
-**/target/*
+**/*.o
+.zig-cache
+.zig-cache/*
+**/.zig-cache
+**/.zig-cache/*
 bin
 bin/*
 **/bin
