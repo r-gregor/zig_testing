@@ -41,7 +41,10 @@
 const print = @import("std").debug.print;
 
 // The grue is a nod to Zork.
-const TripError = error{ Unreachable, EatenByAGrue };
+const TripError = error{
+    Unreachable,
+    EatenByAGrue,
+};
 
 // Let's start with the Places on the map. Each has a name and a
 // distance or difficulty of travel (as judged by the hermit).
@@ -190,7 +193,7 @@ const TripItem = union(enum) {
     fn printMe(self: TripItem) void {
         switch (self) {
             // Oops! The hermit forgot how to capture the union values
-            // in a switch statement. Please capture each value as
+            // in a switch statement. Please capture both values as
             // 'p' so the print statements work!
             .place => |p| print("{s}", .{p.name}),
             .path => |p| print("--{}->", .{p.dist}),
@@ -239,7 +242,7 @@ const HermitsNotebook = struct {
     // We'll often want to find an entry by Place. If one is not
     // found, we return null.
     fn getEntry(self: *HermitsNotebook, place: *const Place) ?*NotebookEntry {
-        for (&self.entries, 0..) |*entry, i| {
+        for (self.entries) |*entry, i| {
             if (i >= self.end_of_entries) break;
 
             // Here's where the hermit got stuck. We need to return
@@ -255,7 +258,6 @@ const HermitsNotebook = struct {
             // dereference and optional value "unwrapping" look
             // together. Remember that you return the address with the
             // "&" operator.
-            // if (place == entry.*.?.place) return entry; // original
             if (place == entry.*.?.place) return &entry.*.?;
             // Try to make your answer this long:__________;
         }
@@ -274,7 +276,7 @@ const HermitsNotebook = struct {
     // distance) than the one we'd noted before. If it is, we
     // overwrite the old entry with the new one.
     fn checkNote(self: *HermitsNotebook, note: NotebookEntry) void {
-        const existing_entry = self.getEntry(note.place);
+        var existing_entry = self.getEntry(note.place);
 
         if (existing_entry == null) {
             self.entries[self.end_of_entries] = note;
@@ -310,7 +312,6 @@ const HermitsNotebook = struct {
     //
     // Looks like the hermit forgot something in the return value of
     // this function. What could that be?
-    // fn getTripTo(self: *HermitsNotebook, trip: []?TripItem, dest: *Place) void { // original
     fn getTripTo(self: *HermitsNotebook, trip: []?TripItem, dest: *Place) !void {
         // We start at the destination entry.
         const destination_entry = self.getEntry(dest);
@@ -388,7 +389,7 @@ pub fn main() void {
     // "start" entry we just added) until we run out, at which point
     // we'll have checked every reachable Place.
     while (notebook.hasNextEntry()) {
-        const place_entry = notebook.getNextEntry();
+        var place_entry = notebook.getNextEntry();
 
         // For every Path that leads FROM the current Place, create a
         // new note (in the form of a NotebookEntry) with the
@@ -431,7 +432,7 @@ fn printTrip(trip: []?TripItem) void {
     // We convert the usize length to a u8 with @intCast(), a
     // builtin function just like @import().  We'll learn about
     // these properly in a later exercise.
-    var i: u8 = @intCast(trip.len);
+    var i: u8 = @intCast(u8, trip.len);
 
     while (i > 0) {
         i -= 1;

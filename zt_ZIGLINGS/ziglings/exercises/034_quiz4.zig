@@ -9,10 +9,12 @@ const std = @import("std");
 
 const NumError = error{IllegalNumber};
 
-pub fn main() void {
+// pub fn main() void { // original
+pub fn main() !void {
     const stdout = std.io.getStdOut().writer();
 
-    const my_num: u32 = getNumber();
+    // const my_num: u32 = getNumber(); // original
+    const my_num: u32 = try getNumber();
 
     try stdout.print("my_num={}\n", .{my_num});
 }
@@ -22,3 +24,5 @@ fn getNumber() NumError!u32 {
     if (false) return NumError.IllegalNumber;
     return 42;
 }
+
+// solution from: https://github.com/wooster0/ziglings/blob/main/exercises/034_quiz4.zig

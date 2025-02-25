@@ -31,7 +31,8 @@ pub fn main() void {
 
     // Please define pointer "p" so that it can point to EITHER foo or
     // bar AND change the value it points to!
-    ??? p: ??? = undefined;
+    // ??? p: ??? = undefined; // original
+    var p: *u8 = undefined;
 
     p = &foo;
     p.* += 1;
