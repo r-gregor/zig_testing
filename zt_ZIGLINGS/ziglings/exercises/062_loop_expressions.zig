@@ -47,7 +47,7 @@ pub fn main() void {
     // return it from the for loop.
     const current_lang: ?[]const u8 = for (langs) |lang| {
         if (lang.len == 3) break lang;
-    // }; // original // from https://github.com/wooster0/ziglings/blob/main/exercises/062_loop_expressions.zig
+        // }; // original
     } else null; // from https://github.com/wooster0/ziglings/blob/main/exercises/062_loop_expressions.zig
 
     if (current_lang) |cl| {
