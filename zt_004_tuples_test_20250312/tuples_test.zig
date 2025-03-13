@@ -2,7 +2,7 @@ const print = @import("std").debug.print;
 
 // f1 from www
 fn divmod(numerator: u32, denominator: u32) struct { u32, u32 } {
-    // returns a tuple that can be destructured
+    // returns a tuple (, or anonymous struct) that can be destructured
     return .{ numerator / denominator, numerator % denominator };
 }
 
@@ -24,9 +24,10 @@ pub fn main() void {
     // print("tuple: x = {}, y = {}, z = {}\n", .{x, y, z});
     print("tuple: x = {}, y = {}, z = {}\n", tuple);
 
+    const div, const mod = divmod(10, 3);
+
     // MINE ----------------------------------------------------------------------------
     // f2
-    const div, const mod = divmod(10, 3);
 
     // is the sam as ...
     print("10 / 3 = {}\n", .{div});
@@ -40,7 +41,7 @@ pub fn main() void {
     // f3
     const names = [_][]const u8{ "Greg", "Tadeja", "Zala", "Mark", "Špela" };
     const names2: [5][]const u8 = .{ "Greg2", "Tadeja2", "Zala2", "Mark2", "Špela2" };
-    print("First name: {s}\n", .{names[0]});
+    print("First name:  {s}\n", .{names[0]});
     print("First name2: {s}\n", .{names2[0]});
 
     print("names:  {s}\n", .{names});
@@ -74,3 +75,4 @@ pub fn main() void {
         print("name2 {d:02}: {s}\n", .{ n + 1, names2[n] });
     }
 }
+
