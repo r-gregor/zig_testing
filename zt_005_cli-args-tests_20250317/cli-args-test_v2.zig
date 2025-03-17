@@ -12,10 +12,18 @@ pub fn main() !void {
     const args = try std.process.argsAlloc(buffer);
     defer std.process.argsFree(buffer, args);
 
-    print("There are {d} cli args\n", .{args.len - 1});
+    const argc = args.len - 1;
+    const arg = args[argc];
 
-    for (args, 1..) |arg, i| {
-        print("arg_{d}: {s} -> {}\n", .{ i, arg, @TypeOf(arg) });
+    print("There are {d} cli args\n", .{argc});
+
+    if (args.len - 1 == 0) {
+        print("\n", .{});
+        std.process.exit(1);
+    }
+
+    for (args, 1..) |arg1, i| {
+        print("arg_{d}: {s} -> {}\n", .{ i, arg1, @TypeOf(arg1) });
     }
 
     print("---\n", .{});
@@ -25,9 +33,6 @@ pub fn main() !void {
     }
 
     print("---\n", .{});
-
-    const argc = args.len - 1;
-    const arg = args[argc];
 
     var j: usize = 0;
     while (j < arg.len) {

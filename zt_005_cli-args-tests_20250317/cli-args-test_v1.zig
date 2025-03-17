@@ -9,11 +9,31 @@ pub fn main() !void {
 
     // stores cli args into ArgIterator (struct with no len field)
     var args = try std.process.argsWithAllocator(buffer);
+    var args1 = args;
+    var args2 = args;
+
+    // test
+    print("TypeOf(args1): {}\n", .{@TypeOf(args1)});
+    print("TypeOf(args2): {}\n", .{@TypeOf(args2)});
+
     defer args.deinit();
 
-    _ = args.skip(); // skip first arg -> progname
+    _ = args1.skip(); // skip first arg -> prog_name/binary
 
-    while (args.next()) |arg| {
+    var argc: u32 = 0;
+    while (args1.next()) |arg| {
+        _ = arg;
+        argc += 1;
+    }
+
+    print("There are {d} args\n", .{argc});
+    if (argc == 0) {
+        print("\n", .{});
+        std.process.exit(1);
+    }
+
+    _ = args2.skip(); // skip first arg -> prog_name/binary
+    while (args2.next()) |arg| {
         print("{s} ==> {}\n", .{ arg, @TypeOf(arg) });
     }
     print("\n", .{});
