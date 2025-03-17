@@ -47,11 +47,11 @@ pub fn main() !void {
         }
         j += 1;
     }
-    print("\n", .{});
+    // print("\n", .{});
 
     print("---\n", .{});
 
-    print("Trying to convert string \"1968\" into integer\n", .{});
+    print("Trying to convert string \"{s}\" into integer\n", .{arg});
     const bd_year = try std.fmt.parseInt(i32, arg, 10);
     print("Birth year: {d}\n", .{bd_year});
 
@@ -61,4 +61,6 @@ pub fn main() !void {
     // const month_str: []const u8 = "February";
     // const bd_month = try std.fmt.parseInt(i32, month_str, 10);
     // print("Birth month: {d}\n", .{bd_month});
+
+    print("\n", .{});
 }
