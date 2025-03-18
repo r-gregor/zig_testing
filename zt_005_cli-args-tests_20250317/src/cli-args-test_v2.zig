@@ -17,19 +17,19 @@ pub fn main() !void {
 
     print("There are {d} cli args\n", .{argc});
 
-    if (args.len - 1 == 0) {
+    if (argc == 0) {
         print("\n", .{});
         std.process.exit(1);
     }
 
-    for (args, 1..) |arg1, i| {
-        print("arg_{d}: {s} -> {}\n", .{ i, arg1, @TypeOf(arg1) });
+    for (args, 0..) |arg1, i| {
+        print("arg {d}: {s} -> {}\n", .{ i, arg1, @TypeOf(arg1) });
     }
 
     print("---\n", .{});
 
     for (1..args.len) |i| {
-        print("arg_{d}: {s} -> {}\n", .{ i, args[i], @TypeOf(args[i]) });
+        print("arg {d}: {s} -> {}\n", .{ i, args[i], @TypeOf(args[i]) });
     }
 
     print("---\n", .{});

@@ -6,7 +6,7 @@ pub fn build(b: *std.Build) void {
 
     const v1 = b.addExecutable(.{
         .name = "cli-args-test_v1",
-        .root_source_file = b.path("cli-args-test_v1.zig"),
+        .root_source_file = b.path("src/cli-args-test_v1.zig"),
         .target = target,
         .optimize = optimize,
     });
@@ -14,7 +14,7 @@ pub fn build(b: *std.Build) void {
 
     const v2 = b.addExecutable(.{
         .name = "cli-args-test_v2",
-        .root_source_file = b.path("cli-args-test_v2.zig"),
+        .root_source_file = b.path("src/cli-args-test_v2.zig"),
         .target = target,
         .optimize = optimize,
     });
