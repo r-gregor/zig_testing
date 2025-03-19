@@ -1,4 +1,5 @@
 // v1: 20250317/en
+// v2: 20250319/en
 const std = @import("std");
 const print = std.debug.print;
 
@@ -26,6 +27,8 @@ pub fn main() !void {
         argc += 1;
     }
 
+    print("---\n", .{});
+
     print("There are {d} args\n", .{argc});
     if (argc == 0) {
         print("\n", .{});
@@ -34,7 +37,7 @@ pub fn main() !void {
 
     _ = args2.skip(); // skip first arg -> prog_name/binary
     while (args2.next()) |arg| {
-        print("{s} ==> {}\n", .{ arg, @TypeOf(arg) });
+        print("{s:<20} ==> {}\n", .{ arg, @TypeOf(arg) });
     }
     print("\n", .{});
 }

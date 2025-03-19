@@ -1,5 +1,6 @@
 // v1: 20250317/en
 // v2: 20250317/en
+// v3: 20250319/en
 const std = @import("std");
 const print = std.debug.print;
 
@@ -23,13 +24,14 @@ pub fn main() !void {
     }
 
     for (args, 0..) |arg1, i| {
-        print("arg {d}: {s} -> {}\n", .{ i, arg1, @TypeOf(arg1) });
+        if (i == 0) continue; // v3: skipping firts argument: full path to prog_name
+        print("arg {d}: {s:<20} -> {}\n", .{ i, arg1, @TypeOf(arg1) }); // v3: formatting
     }
 
     print("---\n", .{});
 
     for (1..args.len) |i| {
-        print("arg {d}: {s} -> {}\n", .{ i, args[i], @TypeOf(args[i]) });
+        print("arg {d}: {s:<20} -> {}\n", .{ i, args[i], @TypeOf(args[i]) }); // v3: formatting
     }
 
     print("---\n", .{});
@@ -49,10 +51,12 @@ pub fn main() !void {
         const char = arg[j];
         if (std.ascii.isDigit(char)) {
             print("char '{c}' is digit\n", .{char});
+        } else { // v3
+            print("[ERROR] char '{c}' is not digit -- cannot convert to iteger\n", .{char});
+            std.process.exit(1);
         }
         j += 1;
     }
-    // print("\n", .{});
 
     print("---\n", .{});
 
