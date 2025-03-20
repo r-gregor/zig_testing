@@ -14,6 +14,7 @@ pub fn main() !void {
     var args2 = args;
 
     // test
+    print("TypeOf(args): {}\n", .{@TypeOf(args)});
     print("TypeOf(args1): {}\n", .{@TypeOf(args1)});
     print("TypeOf(args2): {}\n", .{@TypeOf(args2)});
 
