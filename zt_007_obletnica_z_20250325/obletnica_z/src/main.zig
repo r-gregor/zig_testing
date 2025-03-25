@@ -1,11 +1,7 @@
 // 20250325 v1 en
 // 20250325 v2 en
 const std = @import("std");
-const time = std.time;
-
-const startYear: u64 = 1989;
-var currYear: u64 = 2025;
-const tmstmpDifference = currYear - startYear;
+const epoch = std.time.epoch;
 
 const daysInNYear: u32 = 365;
 const daysInLYear: u32 = 366;
@@ -26,6 +22,9 @@ fn crtc() !void {
 }
 
 pub fn main() !void {
+    const curry = @import("get_curry.zig");
+    const startYear: u64 = 1989;
+    var currYear: u64 = curry.getCurrentYear();
 
     // v2: get user input
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
