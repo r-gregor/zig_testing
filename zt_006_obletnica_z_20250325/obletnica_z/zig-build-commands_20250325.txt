@@ -1,0 +1,30 @@
+ zig build -p release-small --release=small
+ zig build -p release-fast --release=fast
+ zig build -p release-safe --release=safe
+---
+$> !\tree -sh
+.
+├── [ 700]  build.zig
+├── [3.4K]  build.zig.zon
+├── [   0]  release-fast
+│   └── [   0]  bin
+│       ├── [160K]  obletnica_z.exe
+│       └── [792K]  obletnica_z.pdb
+├── [   0]  release-safe
+│   └── [   0]  bin
+│       ├── [529K]  obletnica_z.exe
+│       └── [1.5M]  obletnica_z.pdb
+├── [   0]  release-small
+│   └── [   0]  bin
+│       └── [ 24K]  obletnica_z.exe
+├── [   0]  src
+│   └── [1.8K]  main.zig
+├── [6.9K]  zig-build-commands_20250325.txt
+└── [   0]  zig-out
+    └── [   0]  bin
+        ├── [896K]  obletnica_z.exe
+        └── [1.6M]  obletnica_z.pdb
+
+9 directories, 11 files
+---
+
