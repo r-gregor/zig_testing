@@ -3,10 +3,10 @@
 **/*.pdb
 **/*.obj
 **/*.o
-.zig-cache
-.zig-cache/*
-**/.zig-cache
-**/.zig-cache/*
+.zig-*
+.zig-*/*
+**/.zig-*
+**/.zig-*/*
 bin
 bin/*
 **/bin
