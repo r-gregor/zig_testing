@@ -21,13 +21,9 @@ fn crtc() !void {
     try out.print("{s}\n", .{"-" ** 50});
 }
 
-// local imports
-const currYr = @import("get_curry.zig");
-const leapYr = @import("is_leap_year.zig");
-
 pub fn main() !void {
     const startYear: u64 = 1989;
-    var currYear: u64 = currYr.getCurrentYear();
+    var currYear: u64 = @import("get_curry.zig").getCurrentYear(); // v3
 
     // v2: get user input
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
@@ -49,7 +45,7 @@ pub fn main() !void {
     var loveDays: u64 = 0;
     var leapYears: u64 = 0;
     for (0..yearsBetween) |i| {
-        if (leapYr.isLeapYear(@as(u64, startYear) + i)) {
+        if (@import("is_leap_year.zig").isLeapYear(@as(u64, startYear) + i)) {
             loveDays += daysInLYear;
             leapYears += 1;
         } else {

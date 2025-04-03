@@ -6,7 +6,12 @@ OUT="${TARGET}/zig-out"
 CCH="${TARGET}/.zig-cache"
 
 if [ ! -d ${OUT} ]; then
-	echo "[ERROR] no 'zig-out' dir"
+	echo "[ERROR] no '${OUT}' dir"
+	exit
+fi
+
+if [ ! -d ${CCH} ]; then
+	echo "[ERROR] no '${CCH}' dir"
 	exit
 fi
 
