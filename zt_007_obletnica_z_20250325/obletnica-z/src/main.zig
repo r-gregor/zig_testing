@@ -1,20 +1,13 @@
 // 20250325 v1 en
 // 20250325 v2 en
 // 20250326 v3 d
+// 20250403 v4 en
 const std = @import("std");
 
 const daysInNYear: u32 = 365;
 const daysInLYear: u32 = 366;
 const secondsInNYear: u32 = daysInNYear * 24 * 3600;
 const secondsInLYear: u32 = daysInLYear * 24 * 3600;
-
-// fn isLeapYear(year: u64) bool {
-//     if (@mod(year, 4) != 0)
-//         return false;
-//     if (@mod(year, 100) != 0)
-//         return true;
-//     return (0 == @mod(year, 400));
-// }
 
 fn crtc() !void {
     const out = std.io.getStdOut().writer();
