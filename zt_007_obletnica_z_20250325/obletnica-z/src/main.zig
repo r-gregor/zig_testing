@@ -15,8 +15,8 @@ fn crtc() !void {
 }
 
 // local imports
-const currYr = @import("get_curry.zig");
-const leapYr = @import("is_leap_year.zig");
+const currYr = @import("get-curry.zig");
+const leapYr = @import("is-leap-year.zig");
 
 pub fn main() !void {
     const startYear: u64 = 1989;
