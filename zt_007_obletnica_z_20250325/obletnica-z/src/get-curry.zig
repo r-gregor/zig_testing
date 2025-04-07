@@ -1,5 +1,8 @@
+// filename: src/get-curry.zig
+// last change: 20250407 en
+
 const time = @import("std").time;
-const epoch = @import("std").time.epoch;
+const epoch = time.epoch;
 
 pub fn getCurrentYear() u32 {
     const now = time.timestamp();
