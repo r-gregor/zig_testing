@@ -7,6 +7,8 @@
 .zig-*/*
 **/.zig-*
 **/.zig-*/*
+.zig-cache/
+zig-out/
 bin
 bin/*
 **/bin
