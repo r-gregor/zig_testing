@@ -1,4 +1,4 @@
-// is_leap_year.zig
+// is-leap-year.zig
 // 20250326 v1 d
 
 pub fn isLeapYear(year: u64) bool {

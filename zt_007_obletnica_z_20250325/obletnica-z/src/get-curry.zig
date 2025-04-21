@@ -1,4 +1,4 @@
-// filename: src/get-curry.zig
+// filename: get-curry.zig
 // last change: 20250407 en
 
 const time = @import("std").time;
